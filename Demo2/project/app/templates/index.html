@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+<h1>This is a django project</h1>
+<a href="{% url 'about' %}">about</a>
+<a href="{% url 'contact' %}">contact</a>
+
+<table>
+  <tr>
+    <th>S.no</th>
+    <th>Name</th>
+    <th>Marks</th>
+    <th>Pass</th>
+  </tr>
+
+  {% for people in peoples %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{people.name}}</td>
+    <td>{{people.marks}}</td>
+    <td {% if people.marks <= 50 %} style="background-color: red;" {% endif %}>
+      {% if people.marks >= 50 %} 👍 {% else %} 👎 {% endif %}
+    </td>
+    
+  </tr>
+  {% endfor %}
+</table>
+    <p>{{text}}</p>
+
+{% endblock content %}
