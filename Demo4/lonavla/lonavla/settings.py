@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'lonavla.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_mysql',
+        'NAME': 'dish',
         'USER': 'root',
         'PASSWORD':'roots',
         'HOST': 'localhost',
@@ -123,8 +123,12 @@ USE_TZ = True
 import os
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
-STATICFILES_DIR = os.path.join(BASE_DIR,'public/static')
+STATICFILES_DIR =[
+    os.path.join(BASE_DIR,'public/static')
+]
 
+MEDIA_ROOT = os.path.join(BASE_DIR,'public/static')
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

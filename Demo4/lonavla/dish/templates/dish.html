@@ -9,15 +9,15 @@
         {% csrf_token %}
         <div class="mb-3">
             <label class="form-label">Dish Name</label>
-            <input type="text" name="dish_name" class="form_control"/>
+            <input type="text" name="dish_name" class="form-control" required/>
         </div>
         <div class="mb-3">
             <label class="form-label">Dish description</label>
-            <textarea name="dish_description" class="form_control"></textarea>
+            <textarea name="dish_description" class="form-control" required></textarea>
         </div>
         <div class="mb-3">
             <label class="form-label">Dish image</label>
-            <input type="file" name="dish_image" class="form_control"/>
+            <input type="file" name="dish_image" class="form-control"/>
         </div>
         <button class="btn btn-success">Add the Dish</button>
     </form>
@@ -31,19 +31,20 @@
     </div>
     <hr>
 
-    <table>
+    <table class='table'>
         <thead>
             <tr>
-                <th class="col">#</th>
-                <th class="col">Dish name</th>
-                <th class="col">Dish description</th>
-                <th class="col">Dish image</th>
+                <th scope="col">#</th>
+                <th scope="col">Dish name</th>
+                <th scope="col">Dish description</th>
+                <th scope="col">Dish image</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for dis in dish %}
             <tr>
-                <td class="row">{{forloop.counter}}</td>
+                <td scope="row">{{forloop.counter}}</td>
                 <td>{{dis.dish_name}}</td>
                 <td>{{dis.dish_description}}</td>
                 <td><img src="/media/{{dis.dish_image}}"  style="height: 100px"/></td>

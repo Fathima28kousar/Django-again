@@ -11,6 +11,10 @@ def dish(request):
         dish_name = data.get('dish_name')
         dish_description = data.get('dish_description')
         dish_image = request.FILES.get('dish_image')
+        """ print(data)
+            print(dish_name)
+            print(dish_description)
+            print(dish_image) """
 
         Dish.objects.create(
             dish_name = dish_name,
@@ -20,16 +24,18 @@ def dish(request):
         return redirect('/dish/')
     queryset = Dish.objects.all()
     if request.GET.get('search'):
+        #print(request.GET.get('search'))
         queryset = queryset.filter(dish_name__icontains = request.GET.get('search'))
     context = {'dish':queryset}
     return render(request,'dish.html',context)
 
 def delete(request,id):
+    #print(id)
     queryset = Dish.objects.get(id=id)
     queryset.delete()
     return redirect('/dish/')
 
-def update(request):
+def update(request,id):
     queryset = Dish.objects.get(id=id)
 
     if request.method == 'POST':
@@ -49,7 +55,7 @@ def update(request):
     context = {'dish':queryset}
     return render(request,'update.html',context)
 
-def login(request):
+def log_in(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -67,7 +73,7 @@ def login(request):
             return redirect('/dish/')
     return render(request,'login.html')
 
-def logout(request):
+def log_out(request):
     logout(request)
     return redirect('/login/')
 
