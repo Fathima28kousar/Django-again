@@ -25,9 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('dish/',dish,name='dish'),
     path('update/<id>/',update,name='update'),
-    path('log_in/',log_in,name='log_in'),
+    path('login/',log_in,name='log_in'),
     path('register/',register,name='register'),
     path('delete/<id>/',delete,name='delete'),
+    path('logout/',log_out,name='log_out')
     
 ]
 

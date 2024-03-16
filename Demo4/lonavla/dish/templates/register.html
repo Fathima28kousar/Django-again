@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}register{% endblock title %}
 {% block content %}
+
 <div class="container mt-5">
     <form class="col-6 card mx-auto shadow-lg p-3" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -34,7 +35,7 @@
             <label class="form-label">Password</label>
             <input type="password" class="form-control" name="password"/>
         </div>
-        <p>Don't have an account? <a href="/register/">Register</a></p>
+        <p>Already have an account? <a href="/login/">Login</a></p>
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
