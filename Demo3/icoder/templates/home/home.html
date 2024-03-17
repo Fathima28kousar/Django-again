@@ -1,3 +1,82 @@
-{% extends 'base.html' %}
-{% block title %} home {% endblock title %}
-{% block content %}{% endblock content %}
+
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %} Home {% endblock title %} 
+{% block home%}active{% endblock home %}
+{% block content %}
+<div class="container my-4">
+    <div class="jumbotron">
+        <h1 class="display-4">Hello, world!</h1>
+        <p class="lead">
+            This is a simple hero unit, a simple jumbotron-style component for calling
+            extra attention to featured content or information.
+        </p>
+        <hr class="my-4" />
+        <p>
+            It uses utility classes for typography and spacing to space content out
+            within the larger container.
+        </p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </div>
+</div>
+
+<div class='container'>
+<h2>Popular Blogposts</h2>
+<div class="card mb-3 border-0" >
+  <div class="row no-gutters  overflow-hidden border flex-md-row mb-4 shadow-sm p-3 mb-5 bg-white rounded position-relative">
+    <div class="col-md-4 bg-dark" >
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <strong class="d-inline-block mb-2 text-primary">World</strong>
+        <h3 class="card-title">Featured post</h3>
+        <div class="mb-1 text-muted">Nov 12</div>
+        <p class="card-text mb-5">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <a href="/blogpost/" class="stretched-link">Continue reading</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class='container'>
+<h2>Popular Blogposts</h2>
+<div class="card mb-3 border-0" >
+  <div class="row no-gutters  overflow-hidden border flex-md-row mb-4 shadow-sm p-3 mb-5 bg-white rounded position-relative">
+    <div class="col-md-4 bg-dark" >
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <strong class="d-inline-block mb-2 text-primary">World</strong>
+        <h3 class="card-title">Featured post</h3>
+        <div class="mb-1 text-muted">Nov 12</div>
+        <p class="card-text mb-5">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <a href="/blogpost/" class="stretched-link">Continue reading</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class='container'>
+<h2>Popular Blogposts</h2>
+<div class="card mb-3 border-0" >
+  <div class="row no-gutters  overflow-hidden border flex-md-row mb-4 shadow-sm p-3 mb-5 bg-white rounded position-relative">
+    <div class="col-md-4 bg-dark" >
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <strong class="d-inline-block mb-2 text-primary">World</strong>
+        <h3 class="card-title">Featured post</h3>
+        <div class="mb-1 text-muted">Nov 12</div>
+        <p class="card-text mb-5">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <a href="/blogpost/" class="stretched-link">Continue reading</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock content %}
