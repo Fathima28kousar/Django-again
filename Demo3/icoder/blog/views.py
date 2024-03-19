@@ -1,10 +1,8 @@
-from django.shortcuts import render,redirect, get_object_or_404
+from django.shortcuts import render,redirect, get_object_or_404,HttpResponse
 from .models import Post,Blogcomment
 from django.contrib import messages
 from django.contrib.auth.models import User
 from blog.templatetags import extras
-from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponseNotAllowed
 
 def blogHome(request): 
     allPosts= Post.objects.all()
@@ -54,4 +52,4 @@ def postComment(request):
         return redirect(f"/{post.slug}")
     else:
         # Handle GET requests
-        return HttpResponseNotAllowed(['POST'])
+        return HttpResponse('404 Not Found')

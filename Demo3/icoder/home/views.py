@@ -54,7 +54,6 @@ def about(request):
 
 def handleSignUp(request):
     if request.method == "POST":
-        # Get the post parameters
         username = request.POST.get('username')
         email = request.POST.get('email')
         fname = request.POST.get('fname')
@@ -62,7 +61,6 @@ def handleSignUp(request):
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
 
-        # check for errorneous input
         if len(username) < 10:
             messages.error(request,"Your username must be in 10 characters")
             return redirect('home')
@@ -78,7 +76,7 @@ def handleSignUp(request):
             messages.error(request, 'Username already taken')
             return redirect('home')
         #Create the user
-        myuser = User.objects.create_user(username,email,pass1)
+        myuser = User.objects.create_user(username,email,pass1) #this is used for password hashing also
         myuser.first_name = fname
         myuser.last_name = lname
         myuser.save()
@@ -90,7 +88,6 @@ def handleSignUp(request):
 
 def handleLogin(request):
     if request.method == "POST":
-        # Get the post parameters
         loginusername = request.POST.get('loginusername')
         loginpassword = request.POST.get('loginpassword')
 
@@ -102,7 +99,7 @@ def handleLogin(request):
         else:
             messages.error(request,'Invalid Credentials ! Please Try again')
             return redirect('home')
-    return HttpResponseNotAllowed(['POST'])
+    return HttpResponse('404 Not Found')
 
 def handleLogout(request):
     logout(request)
