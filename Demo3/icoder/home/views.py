@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import messages
 from .models import *
 from django.core.exceptions import ValidationError
@@ -34,21 +34,19 @@ def contact(request):
 
 def search(request):
     query = request.GET.get('query')
-    if query is not None and len(query) > 78:
-        allPosts = Post.objects.none()
-    elif query:
+    if query:
         allPostsTitle = Post.objects.filter(title__icontains=query)
         allPostsAuthor = Post.objects.filter(author__icontains=query)
         allPostsContent = Post.objects.filter(content__icontains=query)
         allPosts = allPostsTitle.union(allPostsAuthor, allPostsContent)
+        
+        if allPosts.count() == 0:
+            messages.warning(request, 'No search results found. Please refine your query.')
     else:
         allPosts = Post.objects.none()
         messages.warning(request, 'No search query provided.')
-
-    if allPosts.count == 0:
-        messages.warning(request,'No search results found .Please refine the query')
-    params = {'allPosts':allPosts,'query':query}    
-    return render(request,'home/search.html')
+        
+    return render(request, 'home/search.html', {'allPosts': allPosts, 'query': query})
 
 def about(request):
     return render(request,'home/about.html')
@@ -74,6 +72,11 @@ def handleSignUp(request):
         if (pass1 != pass2):
             messages.error(request,'passwords do not match')
             return redirect('home')
+        
+        # Check if username already exists
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Username already taken')
+            return redirect('home')
         #Create the user
         myuser = User.objects.create_user(username,email,pass1)
         myuser.first_name = fname
@@ -83,7 +86,7 @@ def handleSignUp(request):
         return redirect('home')
     
     else:
-        return HttpResponseNotAllowed(['POST'])
+        return HttpResponse('404 not found')
 
 def handleLogin(request):
     if request.method == "POST":
