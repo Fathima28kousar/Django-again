@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="text-center mt-5 pt-5">
+    {% if status %}
+        <img src="https://icons.veryicon.com/png/o/miscellaneous/new-version-of-star-selected-icon/success-26.png" class="img-fluid" style="height:200px" />
+        <h2 class="mt-4">Thanks your payment has received</h2>
+    {% else %}
+        <h2>Your payment is failed try again</h2>
+    {% endif %}
+        <a href="/" class="btn btn-success">Buy again</a>
+</div>
+{% endblock content %}

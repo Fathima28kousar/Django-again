@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-6 mx-auto">
+    <div class="text-center mt-5">
+        <img src="https://www.onlygfx.com/wp-content/uploads/2015/12/coffee-cup.png" class="img-fluid img-responsive" style="height:200px"/>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+          <label for="amount">Enter amount</label>
+          <input type="number" name="amount" class="form-control" id="amount">
+          <input type="email" name="email" placeholder="Email">
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Submit</button>
+      </form>
+</div>
+
+<div class="text-center mx-auto">
+  {% if payment %}
+    <form action="/success" method="post">
+      {% csrf_token %}
+      <script src="https://checkout.razorpay.com/v1/checkout.js"  
+      data-key="rzp_test_wucadtaz2NQLqm"           
+      data-amount="{{ payment.amount }}"
+      data-currency="INR"
+      data-order_id="{{payment.id}}"
+      data-buttontext = "Pay with Razorpay"
+      data-name="Coffee Corp"
+      data-description="Payment for products/services"
+      data-image="https://example.com/logo.png"
+      data-prefill-name="{{payment.name}}"
+      data-prefill-email="you@example.com"
+      data-prefill-contact = "9999999999"
+      data-theme-color="#F37254"></script>
+      <input type="hidden" name="hidden" custom="Hidden Element">
+    </form>
+  {% endif %}
+</div>
+{% endblock content %}
