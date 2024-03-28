@@ -15,6 +15,11 @@ def home(request):
             messages.error(request,'Please fill the field')
             return redirect('home')
         amount = int(amount) * 100
+
+        # Check if the amount exceeds 30,000
+        if amount > 3000000:
+            messages.error(request, 'Amount cannot exceed 30,000 INR')
+            return redirect('home')
         
         # Initializing Razorpay client
         client = razorpay.Client(auth=('rzp_test_wucadtaz2NQLqm', 'Un2BvQcbNWU4MpjvhlF28G9W'))
